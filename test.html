@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array functionality visualization</title>
+    
+</head>
+<body>
+    <label for=""> Enter Array Item:</label>
+    <input type="text" >
+    <button type=" button" onclick="alert">Insert</button>
+    <button type=" button" onclick="alert" >Delete</button>
+    <button type=" button" onclick="alert"> Find</button>
+    <button type=" button" onclick="alert">print</button>
+
+    <script>
+        const inputElement = document.querySelector('input[type="text"]');
+const container = document.createElement('div');
+container.style.display = 'flex';
+container.style.flexDirection = 'column';
+document.body.appendChild(container);
+
+document.querySelector('button:nth-of-type(1)').addEventListener('click', () => {
+  const value = inputElement.value;
+  if (value !== '') {
+    const colorBox = document.createElement('div');
+    colorBox.style.width = '50px';
+    colorBox.style.height = '50px';
+    colorBox.style.backgroundColor = getRandomColor();
+    colorBox.textContent = value;
+    container.appendChild(colorBox);
+    inputElement.value = '';
+  } else {
+    alert('PLEASE INSERT THE NUMBER');
+  }
+});
+
+document.querySelector('button:nth-of-type(2)').addEventListener('click', () => {
+  container.innerHTML = '';
+});
+
+document.querySelector('button:nth-of-type(3)').addEventListener('click', () => {
+  const numbers = container.querySelectorAll('div');
+  if (numbers.length > 0) {
+    alert('The numbers are: ' + Array.from(numbers).map(box => box.textContent).join(', '));
+  } else {
+    alert('No numbers are currently displayed.');
+  }
+});
+
+document.querySelector('button:nth-of-type(4)').addEventListener('click', () => {
+  const numbers = container.querySelectorAll('div');
+  if (numbers.length > 0) {
+    alert('The numbers are: ' + Array.from(numbers).map(box => box.textContent).join(', '));
+  } else {
+    alert('No numbers are currently displayed.');
+  }
+});
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+    </script>
+</body>
+</html>
